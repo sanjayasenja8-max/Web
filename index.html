@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional | Dewa Sanjaya</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Portofolio Dewa Sanjaya, seorang Web Developer, Game Developer, dan Content Creator dari Surabaya.">
+    <meta name="author" content="Dewa Sanjaya">
+    <meta property="og:title" content="Portofolio Dewa Sanjaya">
+    <meta property="og:description" content="Web Developer, Game Developer, dan Content Creator.">
+    
+    <!-- Favicon (Ikon Tab Browser) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1d4ed8',
+                        darkBg: '#0b0f19',
+                        darkCard: '#111827',
+                        darkCardHover: '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            overflow-x: hidden; /* Mencegah layar geser ke kanan */
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .video-container {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: #000;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .ratio-9-16 { aspect-ratio: 9 / 16; }
+        .ratio-16-9 { aspect-ratio: 16 / 9; }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-white">
+
+    <!-- Sticky Navbar -->
+    <nav class="fixed w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="text-2xl font-bold text-white tracking-wider">DEWA<span class="text-primary">.</span></a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="nav-link hover:text-primary transition text-sm font-medium">Beranda</a>
+                    <a href="#about" class="nav-link hover:text-primary transition text-sm font-medium">Tentang</a>
+                    <a href="#skills" class="nav-link hover:text-primary transition text-sm font-medium">Keahlian</a>
+                    <a href="#portfolio" class="nav-link hover:text-primary transition text-sm font-medium">Portofolio Video</a>
+                    <a href="#projects" class="nav-link hover:text-primary transition text-sm font-medium">Proyek Lainnya</a>
+                    <a href="#experience" class="nav-link hover:text-primary transition text-sm font-medium">Pengalaman</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="#contact" class="bg-primary hover:bg-secondary text-white px-5 py-2 rounded-full font-semibold text-sm transition shadow-lg shadow-blue-500/20">Kontak</a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-gray-800 absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#home" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Beranda</a>
+                <a href="#about" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Tentang</a>
+                <a href="#skills" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Keahlian</a>
+                <a href="#portfolio" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Portofolio Video</a>
+                <a href="#projects" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Proyek Lainnya</a>
+                <a href="#experience" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Pengalaman</a>
+                <a href="#contact" class="block px-3 py-2 mt-2 bg-primary text-center text-white rounded-md font-semibold">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <canvas id="particles-js"></canvas>
+        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
+            <div class="relative w-36 h-36 mx-auto mb-6">
+                <img src="foto-profil.jpg" alt="Dewa Sanjaya" onerror="this.src='https://placehold.co/150x150/1e293b/3b82f6?text=Dewa'" class="rounded-full w-full h-full object-cover border-4 border-primary shadow-[0_0_25px_rgba(59,130,246,0.4)]">
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-3">Halo, Saya <span class="text-primary">Dewa Sanjaya</span></h1>
+            <h2 class="text-xl md:text-2xl text-gray-300 font-light mb-8">
+                Saya seorang <span id="typing-text" class="text-white font-semibold typing-cursor"></span>
+            </h2>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#portfolio" class="bg-primary hover:bg-secondary w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition shadow-lg shadow-blue-500/30">Lihat Karya</a>
+                <!-- Tombol Download CV -->
+                <a href="CV-Dewa-Sanjaya.pdf" target="_blank" class="bg-darkCard border border-gray-700 hover:border-primary text-white w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fas fa-download"></i> Unduh CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Saya -->
+    <section id="about" class="py-20 bg-darkCard border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Tentang <span class="text-primary">Saya</span></h2>
+                    <p class="text-gray-300 mb-4 leading-relaxed text-justify">
+                        Lahir di Surabaya, saya adalah individu yang sangat antusias di bidang teknologi kreatif dan pengembangan perangkat lunak. Berbekal latar belakang pendidikan dari SMK Dharma Bahari Surabaya, saya memiliki dasar yang kuat dalam merakit sistem, membangun website interaktif, mengembangkan game 2D, serta memproduksi konten kreatif berkualitas.
+                    </p>
+                    <p class="text-gray-300 mb-6 leading-relaxed text-justify">
+                        Saya terbiasa beradaptasi cepat dengan perangkat lunak baru, menjunjung tinggi komunikasi yang efektif, serta mampu bekerja secara kolaboratif dalam tim.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
+                        <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Surabaya, Indonesia</p>
+                        <a href="mailto:dewaaasanjaya@gmail.com" class="hover:text-primary transition"><i class="fas fa-envelope text-primary mr-2"></i> dewaaasanjaya@gmail.com</a>
+                        <a href="tel:083822283000" class="hover:text-primary transition"><i class="fas fa-phone text-primary mr-2"></i> 0838-2228-3000</a>
+                        <p><i class="fas fa-graduation-cap text-primary mr-2"></i> SMK Dharma Bahari</p>
+                    </div>
+                </div>
+                
+                <div class="bg-darkBg p-8 rounded-2xl border border-gray-800 shadow-xl">
+                    <h3 class="text-xl font-bold mb-4 text-primary">Mengapa Bekerja Bersama Saya?</h3>
+                    <ul class="space-y-4 text-gray-300 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Multi-Disiplin:</strong> Menguasai pengembangan web, game development, hingga produksi konten media.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Berorientasi Detail:</strong> Selalu mengutamakan kerapian fungsionalitas dan estetika visual.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Etos Kerja Tinggi:</strong> Berpengalaman dalam lingkungan magang profesional dan pekerja lepas (freelance).</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keahlian (Skills Progress) -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Kemampuan <span class="text-primary">Utama</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Tingkat penguasaan teknis dan operasional yang saya miliki berdasarkan pengalaman kerja dan studi.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
+                    <div class="flex justify-between mb-2 font-medium"><span>Web Development</span><span>85%</span></div>
+                    <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div></div>
+                </div>
+                <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
+                    <div class="flex justify-between mb-2 font-medium"><span>Game Development (2D)</span><span>80%</span></div>
+                    <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 80%"></div></div>
+                </div>
+                <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
+                    <div class="flex justify-between mb-2 font-medium"><span>Content Creator & Multimedia</span><span>90%</span></div>
+                    <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 90%"></div></div>
+                </div>
+                <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
+                    <div class="flex justify-between mb-2 font-medium"><span>Software & IT Operation</span><span>85%</span></div>
+                    <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portofolio Video Utama -->
+    <section id="portfolio" class="py-20 bg-darkCard border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Dokumentasi langsung dari hasil karya web, game 2D, dan proyek kreatif.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Proyek 1: Web (9:16) -->
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
+                    <div class="video-container ratio-9-16 mb-4">
+                        <video controls poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
+                            <source src="video-proyek-1.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Web Development</h3>
+                    <p class="text-sm text-gray-400">Cuplikan antarmuka dan interaktivitas website responsif.</p>
+                </div>
+
+                <!-- Proyek 2: Game 2D (9:16) -->
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
+                    <div class="video-container ratio-9-16 mb-4">
+                        <video controls poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Game">
+                            <source src="video-proyek-2.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Game 2D Development</h3>
+                    <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
+                </div>
+
+                <!-- Proyek 3: Content Creator (16:9) -->
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="video-container ratio-16-9 mb-4">
+                            <video controls poster="https://placehold.co/800x450/1e293b/3b82f6?text=Video+Konten">
+                                <source src="video-proyek-3.mp4" type="video/mp4">
+                                Browser Anda tidak mendukung tag video.
+                            </video>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Konten Kreatif</h3>
+                        <p class="text-sm text-gray-400">Hasil produksi dan penyuntingan video media visual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Proyek Interaktif -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek Tambahan</span></h2>
+                <p class="text-gray-400">Kumpulan proyek lainnya yang dikelompokkan berdasarkan kategori.</p>
+                
+                <!-- Filter Tombol -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <button onclick="filterProjects('all', this)" class="filter-btn bg-primary text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-md">Semua</button>
+                    <button onclick="filterProjects('web', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Web</button>
+                    <button onclick="filterProjects('game', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Game</button>
+                    <button onclick="filterProjects('content', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Desain / Konten</button>
+                </div>
+            </div>
+
+            <!-- Grid Kartu Proyek -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="project-grid">
+                
+                <!-- Kartu 1 (Web) -->
+                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
+                        <i class="fas fa-code text-5xl text-primary opacity-50"></i>
+                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
+                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu 2 (Game) -->
+                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
+                        <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
+                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan mekanik karakter, sistem skor, dan level interaktif berbasis mesin 2D.</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
+                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:te
