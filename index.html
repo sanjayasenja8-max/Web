@@ -43,7 +43,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: #0b0f19;
             color: #f3f4f6;
-            overflow-x: hidden; /* Mencegah layar geser ke kanan */
+            overflow-x: hidden;
         }
         #particles-js {
             position: absolute;
@@ -59,14 +59,19 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
         
+        /* PERBAIKAN: Animasi pakai CSS murni, tidak akan buat halaman kosong */
         .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            animation: fadeInUp 1s ease-out forwards;
         }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .video-container {
@@ -106,13 +111,13 @@
                 </div>
 
                 <!-- Mobile Hamburger Button -->
-                <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-gray-800 absolute w-full">
             <div class="px-4 pt-2 pb-4 space-y-2">
                 <a href="#home" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Beranda</a>
@@ -129,7 +134,7 @@
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <canvas id="particles-js"></canvas>
-        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
+        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto">
             <div class="relative w-36 h-36 mx-auto mb-6">
                 <img src="foto-profil.jpg" alt="Dewa Sanjaya" onerror="this.src='https://placehold.co/150x150/1e293b/3b82f6?text=Dewa'" class="rounded-full w-full h-full object-cover border-4 border-primary shadow-[0_0_25px_rgba(59,130,246,0.4)]">
             </div>
@@ -141,7 +146,6 @@
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="#portfolio" class="bg-primary hover:bg-secondary w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition shadow-lg shadow-blue-500/30">Lihat Karya</a>
-                <!-- Tombol Download CV -->
                 <a href="CV-Dewa-Sanjaya.pdf" target="_blank" class="bg-darkCard border border-gray-700 hover:border-primary text-white w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition flex items-center justify-center gap-2">
                     <i class="fas fa-download"></i> Unduh CV
                 </a>
@@ -217,7 +221,7 @@
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Dokumentasi langsung dari hasil karya web, game 2D, dan proyek kreatif.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Proyek 1: Web (9:16) -->
+                <!-- Proyek 1 -->
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
@@ -229,7 +233,7 @@
                     <p class="text-sm text-gray-400">Cuplikan antarmuka dan interaktivitas website responsif.</p>
                 </div>
 
-                <!-- Proyek 2: Game 2D (9:16) -->
+                <!-- Proyek 2 -->
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Game">
@@ -241,7 +245,7 @@
                     <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
                 </div>
 
-                <!-- Proyek 3: Content Creator (16:9) -->
+                <!-- Proyek 3 -->
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between">
                     <div>
                         <div class="video-container ratio-16-9 mb-4">
@@ -267,7 +271,6 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek Tambahan</span></h2>
                 <p class="text-gray-400">Kumpulan proyek lainnya yang dikelompokkan berdasarkan kategori.</p>
                 
-                <!-- Filter Tombol -->
                 <div class="flex flex-wrap justify-center gap-3 mt-8">
                     <button onclick="filterProjects('all', this)" class="filter-btn bg-primary text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-md">Semua</button>
                     <button onclick="filterProjects('web', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Web</button>
@@ -276,10 +279,8 @@
                 </div>
             </div>
 
-            <!-- Grid Kartu Proyek -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="project-grid">
-                
-                <!-- Kartu 1 (Web) -->
+                <!-- Kartu 1 -->
                 <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-code text-5xl text-primary opacity-50"></i>
@@ -295,7 +296,7 @@
                     </div>
                 </div>
 
-                <!-- Kartu 2 (Game) -->
+                <!-- Kartu 2 -->
                 <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
@@ -306,4 +307,6 @@
                         <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan mekanik karakter, sistem skor, dan level interaktif berbasis mesin 2D.</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
-                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:te
+                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
+                        </div>
+                    </
