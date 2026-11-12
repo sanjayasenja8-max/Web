@@ -6,7 +6,6 @@
     <title>Portofolio Profesional | Dewa Sanjaya</title>
     
     <meta name="description" content="Portofolio Dewa Sanjaya, seorang Web Developer, Game Developer, dan Content Creator dari Surabaya.">
-    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,7 +41,7 @@
         
         .stars-bg {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            inset: 0;
             z-index: 0;
             background-image:
                 radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
@@ -53,29 +52,31 @@
                 radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
             background-repeat: repeat;
             background-size: 200px 200px;
-            animation: starsAnim 10s linear infinite;
+            animation: starsAnim 12s linear infinite;
         }
         @keyframes starsAnim {
             0% { background-position: 0 0; }
             100% { background-position: -200px 200px; }
         }
 
-        .typing-container {
+        /* Perbaikan Kursor Ketik agar menempel pas di akhir teks */
+        .typing-cursor {
             display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #fff;
-            width: 0;
-            animation: typing 2.5s steps(30, end) forwards, blink 0.8s step-end infinite;
-            vertical-align: bottom;
+            border-right: 3px solid #3b82f6;
+            padding-right: 4px;
+            animation: blink 0.75s step-end infinite;
         }
-        @keyframes typing { from { width: 0; } to { width: 100%; } }
         @keyframes blink { 50% { border-color: transparent; } }
 
-        .fade-in { animation: fadeInUp 1s ease-out forwards; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Animasi Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .video-container { border-radius: 0.75rem; overflow: hidden; background: #000; }
@@ -85,7 +86,6 @@
         
         section { scroll-margin-top: 80px; }
 
-        /* KUNCI RAHASIA: Membuat grid otomatis menyesuaikan layar tanpa terpotong */
         .grid-auto {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -114,38 +114,40 @@
                     <a href="#contact" class="bg-primary hover:bg-secondary text-white px-5 py-2 rounded-full font-semibold text-sm transition shadow-lg shadow-blue-500/20">Kontak</a>
                 </div>
 
-                <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                <button id="menu-btn" aria-label="Buka Menu" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-gray-800 absolute w-full">
+        <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-gray-800 absolute w-full shadow-2xl">
             <div class="px-4 pt-2 pb-4 space-y-2">
-                <a href="#home" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Beranda</a>
-                <a href="#about" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Tentang</a>
-                <a href="#skills" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Keahlian</a>
-                <a href="#portfolio" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Portofolio Video</a>
-                <a href="#projects" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Proyek Lainnya</a>
-                <a href="#experience" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Pengalaman</a>
-                <a href="#contact" class="block px-3 py-2 mt-2 bg-primary text-center text-white rounded-md font-semibold">Kontak</a>
+                <a href="#home" class="mobile-link block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Beranda</a>
+                <a href="#about" class="mobile-link block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Tentang</a>
+                <a href="#skills" class="mobile-link block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Keahlian</a>
+                <a href="#portfolio" class="mobile-link block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Portofolio Video</a>
+                <a href="#projects" class="mobile-link block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Proyek Lainnya</a>
+                <a href="#experience" class="mobile-link block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Pengalaman</a>
+                <a href="#contact" class="mobile-link block px-3 py-2 mt-2 bg-primary text-center text-white rounded-md font-semibold">Kontak</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative flex items-center justify-center overflow-hidden min-h-[85vh] pt-28 pb-16 md:pt-32 md:pb-24">
+    <section id="home" class="relative flex items-center justify-center overflow-hidden min-h-[88vh] pt-28 pb-16 md:pt-32 md:pb-24">
         <div class="stars-bg"></div>
-        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
+        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto">
             <div class="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
                 <img src="foto-profil.jpg" alt="Dewa Sanjaya" onerror="this.src='https://placehold.co/150x150/1e293b/3b82f6?text=Dewa'" class="rounded-full w-full h-full object-cover border-4 border-primary shadow-[0_0_25px_rgba(59,130,246,0.4)]">
             </div>
             
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Halo, Saya <br class="sm:hidden"><span class="text-primary">Dewa Sanjaya</span></h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                Halo, Saya <br class="sm:hidden"><span class="text-primary">Dewa Sanjaya</span>
+            </h1>
             
-            <div class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px] flex items-center justify-center gap-2">
+            <div class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px] flex flex-wrap items-center justify-center gap-2">
                 <span>Saya seorang</span> 
-                <span class="typing-container text-white font-semibold">Web Developer</span>
+                <span id="typed-text" class="typing-cursor text-white font-semibold">Web Developer</span>
             </div>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -159,14 +161,14 @@
 
     <!-- Tentang Saya -->
     <section id="about" class="py-20 bg-darkCard border-t border-gray-800 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-3xl font-bold mb-6">Tentang <span class="text-primary">Saya</span></h2>
-                    <p class="text-gray-300 mb-4 leading-relaxed text-left">
-                        Lahir di Surabaya, saya adalah individu yang sangat antusias di bidang teknologi kreatif dan pengembangan perangkat lunak. Berbekal latar belakang pendidikan dari SMK Dharma Bahari Surabaya, saya memiliki dasar yang kuat dalam merakit sistem, membangun website interaktif, mengembangkan game 2D, serta memproduksi konten kreatif berkualitas.
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Lahir di Surabaya, saya adalah individu yang antusias di bidang teknologi kreatif dan pengembangan perangkat lunak. Berbekal latar belakang pendidikan dari SMK Dharma Bahari Surabaya, saya memiliki dasar yang kuat dalam merakit sistem, membangun website interaktif, mengembangkan game 2D, serta memproduksi konten kreatif.
                     </p>
-                    <p class="text-gray-300 mb-6 leading-relaxed text-left">
+                    <p class="text-gray-300 mb-6 leading-relaxed">
                         Saya terbiasa beradaptasi cepat dengan perangkat lunak baru, menjunjung tinggi komunikasi yang efektif, serta mampu bekerja secara kolaboratif dalam tim.
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
@@ -182,7 +184,7 @@
                     <ul class="space-y-4 text-gray-300 text-sm">
                         <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Multi-Disiplin:</strong> Menguasai pengembangan web, game development, hingga produksi konten media.</span></li>
                         <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Berorientasi Detail:</strong> Selalu mengutamakan kerapian fungsionalitas dan estetika visual.</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Etos Kerja Tinggi:</strong> Berpengalaman dalam lingkungan magang profesional dan pekerja lepas (freelance).</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span><strong>Etos Kerja Tinggi:</strong> Berpengalaman dalam lingkungan magang profesional, IT support, dan freelance.</span></li>
                     </ul>
                 </div>
             </div>
@@ -191,27 +193,27 @@
 
     <!-- Keahlian -->
     <section id="skills" class="py-20 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Kemampuan <span class="text-primary">Utama</span></h2>
-                <p class="text-gray-400 max-w-xl mx-auto">Tingkat penguasaan teknis dan operasional yang saya miliki berdasarkan pengalaman kerja dan studi.</p>
+                <p class="text-gray-400 max-w-xl mx-auto">Tingkat penguasaan teknis dan operasional berdasarkan pengalaman kerja dan studi.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
-                    <div class="flex justify-between mb-2 font-medium"><span>Web Development</span><span>85%</span></div>
+                    <div class="flex justify-between mb-2 font-medium"><span>Web Development (HTML, CSS, JS)</span><span>85%</span></div>
                     <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div></div>
                 </div>
                 <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
-                    <div class="flex justify-between mb-2 font-medium"><span>Game Development (2D)</span><span>80%</span></div>
+                    <div class="flex justify-between mb-2 font-medium"><span>Game Development (2D Canvas)</span><span>80%</span></div>
                     <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 80%"></div></div>
                 </div>
                 <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
-                    <div class="flex justify-between mb-2 font-medium"><span>Content Creator & Multimedia</span><span>90%</span></div>
+                    <div class="flex justify-between mb-2 font-medium"><span>Content Creator & Video Editing</span><span>90%</span></div>
                     <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 90%"></div></div>
                 </div>
                 <div class="bg-darkCard p-6 rounded-xl border border-gray-800">
-                    <div class="flex justify-between mb-2 font-medium"><span>Software & IT Operation</span><span>85%</span></div>
+                    <div class="flex justify-between mb-2 font-medium"><span>IT Support & Hardware Troubleshooting</span><span>85%</span></div>
                     <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div></div>
                 </div>
             </div>
@@ -220,12 +222,11 @@
 
     <!-- Portofolio Video -->
     <section id="portfolio" class="py-20 bg-darkCard border-t border-gray-800 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
-            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video diputar otomatis tanpa suara. Klik ikon speaker pada pemutar video untuk mengaktifkan audio.</p>
             
-            <!-- MENGGUNAKAN GRID-AUTO AGAR TIDAK TERPOTONG -->
-            <div class="grid-auto">
+            <div class="grid-auto items-start">
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
@@ -246,26 +247,23 @@
                     <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
                 </div>
 
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="video-container ratio-16-9 mb-4">
-                            <video controls autoplay muted loop playsinline poster="https://placehold.co/800x450/1e293b/3b82f6?text=Video+Konten">
-                                <source src="video-proyek-3.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
+                    <div class="video-container ratio-16-9 mb-4">
+                        <video controls autoplay muted loop playsinline poster="https://placehold.co/800x450/1e293b/3b82f6?text=Video+Konten">
+                            <source src="video-proyek-3.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Konten Kreatif</h3>
-                        <p class="text-sm text-gray-400">Hasil produksi dan penyuntingan video media visual.</p>
-                    </div>
+                    <span class="inline-block text-xs text-primary bg-primary/10 border border-primary/30 px-2.5 py-0.5 rounded-full mb-2">Landscape 16:9</span>
+                    <h3 class="text-xl font-bold mb-2">Konten Kreatif & Sinematik</h3>
+                    <p class="text-sm text-gray-400">Hasil produksi, color grading, dan penyuntingan video visual.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Galeri Proyek (SUDAH DIPERBAIKI TOTAL) -->
+    <!-- Galeri Proyek -->
     <section id="projects" class="py-20 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek Tambahan</span></h2>
                 <p class="text-gray-400">Kumpulan proyek lainnya yang dikelompokkan berdasarkan kategori.</p>
@@ -278,13 +276,11 @@
                 </div>
             </div>
 
-            <!-- MENGGUNAKAN GRID-AUTO -->
             <div class="grid-auto" id="project-grid">
-                
                 <!-- Kartu 1 -->
                 <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                        <i class="fas fa-code text-5xl text-primary opacity-50"></i>
+                        <i class="fas fa-code text-5xl text-primary opacity-60"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
@@ -300,9 +296,9 @@
                 <!-- Kartu 2 -->
                 <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                        <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
+                        <i class="fas fa-gamepad text-5xl text-primary opacity-60"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
-     
+                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Arcade</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Game 2D berbasis HTML5 Canvas dengan sistem skor, kontrol responsif, dan m
