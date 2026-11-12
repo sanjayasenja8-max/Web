@@ -85,10 +85,11 @@
         
         section { scroll-margin-top: 80px; }
 
-        /* PENGAMAN GRID AGAR KARTU KE-3 TIDAK HILANG */
-        .grid-safe > * {
-            min-width: 0; 
-            word-wrap: break-word;
+        /* KUNCI RAHASIA: Membuat grid otomatis menyesuaikan layar tanpa terpotong */
+        .grid-auto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
     </style>
 </head>
@@ -223,8 +224,9 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-safe">
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 w-full">
+            <!-- MENGGUNAKAN GRID-AUTO AGAR TIDAK TERPOTONG -->
+            <div class="grid-auto">
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
                             <source src="video-proyek-1.mp4" type="video/mp4">
@@ -234,7 +236,7 @@
                     <p class="text-sm text-gray-400">Cuplikan antarmuka dan interaktivitas website responsif.</p>
                 </div>
 
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 w-full">
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Game">
                             <source src="video-proyek-2.mp4" type="video/mp4">
@@ -244,7 +246,7 @@
                     <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
                 </div>
 
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between w-full">
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between">
                     <div>
                         <div class="video-container ratio-16-9 mb-4">
                             <video controls autoplay muted loop playsinline poster="https://placehold.co/800x450/1e293b/3b82f6?text=Video+Konten">
@@ -261,7 +263,7 @@
         </div>
     </section>
 
-    <!-- Galeri Proyek (KETERANGAN SUDAH LENGKAP) -->
+    <!-- Galeri Proyek (SUDAH DIPERBAIKI TOTAL) -->
     <section id="projects" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
@@ -276,10 +278,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-safe" id="project-grid">
+            <!-- MENGGUNAKAN GRID-AUTO -->
+            <div class="grid-auto" id="project-grid">
                 
                 <!-- Kartu 1 -->
-                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col w-full">
+                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-code text-5xl text-primary opacity-50"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
@@ -295,11 +298,11 @@
                 </div>
 
                 <!-- Kartu 2 -->
-                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col w-full">
+                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan me
+     
