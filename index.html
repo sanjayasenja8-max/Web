@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Profesional | Dewa Sanjaya</title>
     
-    <!-- SEO & Meta Tags -->
     <meta name="description" content="Portofolio Dewa Sanjaya, seorang Web Developer, Game Developer, dan Content Creator dari Surabaya.">
-    <meta name="author" content="Dewa Sanjaya">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
@@ -43,13 +41,16 @@
             color: #f3f4f6;
             overflow-x: hidden;
         }
+        
+        /* PERBAIKAN: Bintang sekarang ada di lapisan yang benar */
         #particles-js {
             position: absolute;
             width: 100%;
-            height: 100vh;
-            z-index: -1;
+            height: 100%;
+            z-index: 0; /* Diubah dari -1 ke 0 */
             top: 0;
             left: 0;
+            pointer-events: none; /* Agar tidak menghalangi klik tombol */
         }
         .typing-cursor::after {
             content: '|';
@@ -78,7 +79,6 @@
         .ratio-9-16 { aspect-ratio: 9 / 16; }
         .ratio-16-9 { aspect-ratio: 16 / 9; }
         
-        /* Jarak agar judul tidak tertutup navbar saat diklik */
         section { scroll-margin-top: 70px; }
     </style>
 </head>
@@ -128,6 +128,8 @@
     <!-- Hero Section -->
     <section id="home" class="relative flex items-center justify-center overflow-hidden min-h-[85vh] pt-28 pb-16 md:pt-32 md:pb-24">
         <canvas id="particles-js"></canvas>
+        
+        <!-- z-10 agar teks berada di atas bintang -->
         <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
             <div class="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
                 <img src="foto-profil.jpg" alt="Dewa Sanjaya" onerror="this.src='https://placehold.co/150x150/1e293b/3b82f6?text=Dewa'" class="rounded-full w-full h-full object-cover border-4 border-primary shadow-[0_0_25px_rgba(59,130,246,0.4)]">
@@ -135,9 +137,10 @@
             
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Halo, Saya <br class="sm:hidden"><span class="text-primary">Dewa Sanjaya</span></h1>
             
-            <!-- h2 diubah menggunakan min-h agar teks tidak terpotong -->
-            <h2 class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px]">
-                Saya seorang <span id="typing-text" class="text-white font-semibold typing-cursor"></span>
+            <!-- Teks yang lebih bagus dan dinamis -->
+            <h2 class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px] flex items-center justify-center">
+                <span class="mr-2">Saya seorang</span> 
+                <span id="typing-text" class="text-white font-semibold typing-cursor"></span>
             </h2>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -150,7 +153,7 @@
     </section>
 
     <!-- Tentang Saya -->
-    <section id="about" class="py-20 bg-darkCard border-t border-gray-800">
+    <section id="about" class="py-20 bg-darkCard border-t border-gray-800 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
                 <div>
@@ -182,7 +185,7 @@
     </section>
 
     <!-- Keahlian (Skills Progress) -->
-    <section id="skills" class="py-20">
+    <section id="skills" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Kemampuan <span class="text-primary">Utama</span></h2>
@@ -211,7 +214,7 @@
     </section>
 
     <!-- Portofolio Video Utama -->
-    <section id="portfolio" class="py-20 bg-darkCard border-t border-gray-800">
+    <section id="portfolio" class="py-20 bg-darkCard border-t border-gray-800 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Dokumentasi langsung dari hasil karya web, game 2D, dan proyek kreatif.</p>
@@ -255,7 +258,7 @@
     </section>
 
     <!-- Galeri Proyek Interaktif -->
-    <section id="projects" class="py-20">
+    <section id="projects" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek Tambahan</span></h2>
@@ -300,6 +303,4 @@
                     </div>
                 </div>
 
-                <div class="project-card content bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
-                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                        <i class="fas fa-video text-5xl text-primary opacity-50
+                <div class="project-card content bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition 
