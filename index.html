@@ -7,14 +7,10 @@
     
     <meta name="description" content="Portofolio Dewa Sanjaya, seorang Web Developer, Game Developer, dan Content Creator dari Surabaya.">
     
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
@@ -34,14 +30,17 @@
         }
     </script>
     <style>
-        body {
+        /* PENGAMAN AGAR TIDAK BISA DI-SCROLL KE SAMPING */
+        html, body {
             font-family: 'Poppins', sans-serif;
             background-color: #0b0f19;
             color: #f3f4f6;
             overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
         
-        /* BINTANG CSS */
         .stars-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -62,44 +61,26 @@
             100% { background-position: -200px 200px; }
         }
 
-        /* EFEK KETIK CSS */
         .typing-container {
             display: inline-block;
             overflow: hidden;
             white-space: nowrap;
             border-right: 3px solid #fff;
             width: 0;
-            animation: 
-                typing 2.5s steps(30, end) forwards,
-                blink 0.8s step-end infinite;
+            animation: typing 2.5s steps(30, end) forwards, blink 0.8s step-end infinite;
             vertical-align: bottom;
         }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
 
-        .fade-in {
-            animation: fadeInUp 1s ease-out forwards;
-        }
+        .fade-in { animation: fadeInUp 1s ease-out forwards; }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .video-container {
-            border-radius: 0.75rem;
-            overflow: hidden;
-            background: #000;
-        }
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .video-container { border-radius: 0.75rem; overflow: hidden; background: #000; }
+        video { width: 100%; height: 100%; object-fit: cover; }
         .ratio-9-16 { aspect-ratio: 9 / 16; }
         .ratio-16-9 { aspect-ratio: 16 / 9; }
         
@@ -133,7 +114,6 @@
             </div>
         </div>
 
-        <!-- Menu HP -->
         <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-gray-800 absolute w-full">
             <div class="px-4 pt-2 pb-4 space-y-2">
                 <a href="#home" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Beranda</a>
@@ -238,7 +218,8 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- MENGGUNAKAN GRID UNTUK VIDEO -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
@@ -276,7 +257,7 @@
         </div>
     </section>
 
-    <!-- Galeri Proyek (SUDAH DIPERBAIKI PAKAI FLEXBOX) -->
+    <!-- Galeri Proyek (MENGGUNAKAN CSS GRID PALING STABIL) -->
     <section id="projects" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
@@ -291,30 +272,31 @@
                 </div>
             </div>
 
-            <!-- MENGGUNAKAN FLEXBOX AGAR TIDAK TERPOTONG -->
-            <div class="flex flex-wrap -mx-4" id="project-grid">
+            <!-- CSS GRID 1 KOLOM DI HP, 3 KOLOM DI LAPTOP -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
                 
                 <!-- Kartu 1 -->
-                <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 project-card web">
-                    <div class="bg-darkCard h-full rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
-                        <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                            <i class="fas fa-code text-5xl text-primary opacity-50"></i>
-                            <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
-                            <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
-                                <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
-                            </div>
+                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
+                        <i class="fas fa-code text-5xl text-primary opacity-50"></i>
+                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
+                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Kartu 2 -->
-                <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 project-card game">
-                    <div class="bg-darkCard h-full rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
-                        <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                            <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
-                            <span class="absolute top-3 right-3 
+                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
+                        <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
+                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan
