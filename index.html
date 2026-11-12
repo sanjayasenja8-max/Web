@@ -41,7 +41,7 @@
             overflow-x: hidden;
         }
         
-        /* 1. BINTANG PAKAI CSS MURNI (DIJAMIN MUNCUL) */
+        /* BINTANG CSS */
         .stars-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -62,7 +62,7 @@
             100% { background-position: -200px 200px; }
         }
 
-        /* 2. EFEK KETIK PAKAI CSS MURNI */
+        /* EFEK KETIK CSS */
         .typing-container {
             display: inline-block;
             overflow: hidden;
@@ -103,7 +103,6 @@
         .ratio-9-16 { aspect-ratio: 9 / 16; }
         .ratio-16-9 { aspect-ratio: 16 / 9; }
         
-        /* Jarak aman agar tidak tertutup menu atas */
         section { scroll-margin-top: 80px; }
     </style>
 </head>
@@ -150,10 +149,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative flex items-center justify-center overflow-hidden min-h-[85vh] pt-28 pb-16 md:pt-32 md:pb-24">
-        
-        <!-- Bintang CSS -->
         <div class="stars-bg"></div>
-        
         <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
             <div class="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
                 <img src="foto-profil.jpg" alt="Dewa Sanjaya" onerror="this.src='https://placehold.co/150x150/1e293b/3b82f6?text=Dewa'" class="rounded-full w-full h-full object-cover border-4 border-primary shadow-[0_0_25px_rgba(59,130,246,0.4)]">
@@ -163,7 +159,6 @@
             
             <div class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px] flex items-center justify-center gap-2">
                 <span>Saya seorang</span> 
-                <!-- Teks Ketik CSS -->
                 <span class="typing-container text-white font-semibold">Web Developer</span>
             </div>
             
@@ -244,7 +239,6 @@
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- VIDEO 1: AUTO PLAY, MUTED, LOOP -->
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
@@ -255,7 +249,6 @@
                     <p class="text-sm text-gray-400">Cuplikan antarmuka dan interaktivitas website responsif.</p>
                 </div>
 
-                <!-- VIDEO 2: AUTO PLAY, MUTED, LOOP -->
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Game">
@@ -266,7 +259,6 @@
                     <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
                 </div>
 
-                <!-- VIDEO 3: AUTO PLAY, MUTED, LOOP -->
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between">
                     <div>
                         <div class="video-container ratio-16-9 mb-4">
@@ -284,7 +276,7 @@
         </div>
     </section>
 
-    <!-- Galeri Proyek -->
+    <!-- Galeri Proyek (SUDAH DIPERBAIKI PAKAI FLEXBOX) -->
     <section id="projects" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
@@ -299,23 +291,30 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="project-grid">
-                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
-                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                        <i class="fas fa-code text-5xl text-primary opacity-50"></i>
-                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
-                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
+            <!-- MENGGUNAKAN FLEXBOX AGAR TIDAK TERPOTONG -->
+            <div class="flex flex-wrap -mx-4" id="project-grid">
+                
+                <!-- Kartu 1 -->
+                <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 project-card web">
+                    <div class="bg-darkCard h-full rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                        <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
+                            <i class="fas fa-code text-5xl text-primary opacity-50"></i>
+                            <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
+                            <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
+                                <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
-                    <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
-                        <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
-                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-
+                <!-- Kartu 2 -->
+                <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 project-card game">
+                    <div class="bg-darkCard h-full rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                        <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
+                            <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
+                            <span class="absolute top-3 right-3 
