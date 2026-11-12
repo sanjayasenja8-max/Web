@@ -41,6 +41,7 @@
             padding: 0;
         }
         
+        /* BINTANG CSS */
         .stars-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -61,6 +62,7 @@
             100% { background-position: -200px 200px; }
         }
 
+        /* EFEK KETIK CSS */
         .typing-container {
             display: inline-block;
             overflow: hidden;
@@ -85,6 +87,12 @@
         .ratio-16-9 { aspect-ratio: 16 / 9; }
         
         section { scroll-margin-top: 80px; }
+
+        /* KUNCI RAHASIA: Mencegah grid meluber keluar layar */
+        .grid-safe > * {
+            min-width: 0; 
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-primary selection:text-white">
@@ -218,29 +226,29 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
             
-            <!-- MENGGUNAKAN GRID UNTUK VIDEO -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
+            <!-- GRID SAFE DITAMBAHKAN -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-safe">
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 w-full">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Web">
                             <source src="video-proyek-1.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Web Development</h3>
-                    <p class="text-sm text-gray-400">Cuplikan antarmuka dan interaktivitas website responsif.</p>
+                    <h3 class="text-lg font-bold mb-2">Web Development</h3>
+                    <p class="text-sm text-gray-400">Cuplikan antarmuka website.</p>
                 </div>
 
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300">
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 w-full">
                     <div class="video-container ratio-9-16 mb-4">
                         <video controls autoplay muted loop playsinline poster="https://placehold.co/600x1000/1e293b/3b82f6?text=Video+Game">
                             <source src="video-proyek-2.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Game 2D Development</h3>
-                    <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
+                    <h3 class="text-lg font-bold mb-2">Game 2D</h3>
+                    <p class="text-sm text-gray-400">Demonstrasi mekanik game 2D.</p>
                 </div>
 
-                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between">
+                <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between w-full">
                     <div>
                         <div class="video-container ratio-16-9 mb-4">
                             <video controls autoplay muted loop playsinline poster="https://placehold.co/800x450/1e293b/3b82f6?text=Video+Konten">
@@ -249,54 +257,55 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Konten Kreatif</h3>
-                        <p class="text-sm text-gray-400">Hasil produksi dan penyuntingan video media visual.</p>
+                        <h3 class="text-lg font-bold mb-2">Konten Kreatif</h3>
+                        <p class="text-sm text-gray-400">Hasil penyuntingan video.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Galeri Proyek (MENGGUNAKAN CSS GRID PALING STABIL) -->
+    <!-- Galeri Proyek (SUDAH DI-FIX ANTI TERPOTONG) -->
     <section id="projects" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek Tambahan</span></h2>
-                <p class="text-gray-400">Kumpulan proyek lainnya yang dikelompokkan berdasarkan kategori.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek</span></h2>
+                <p class="text-gray-400">Kumpulan proyek berdasarkan kategori.</p>
                 
                 <div class="flex flex-wrap justify-center gap-3 mt-8">
                     <button onclick="filterProjects('all', this)" class="filter-btn bg-primary text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-md">Semua</button>
                     <button onclick="filterProjects('web', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Web</button>
                     <button onclick="filterProjects('game', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Game</button>
-                    <button onclick="filterProjects('content', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Desain / Konten</button>
+                    <button onclick="filterProjects('content', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Konten</button>
                 </div>
             </div>
 
-            <!-- CSS GRID 1 KOLOM DI HP, 3 KOLOM DI LAPTOP -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
+            <!-- GRID SAFE DITAMBAHKAN -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-safe" id="project-grid">
                 
                 <!-- Kartu 1 -->
-                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                <div class="project-card web bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col w-full">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-code text-5xl text-primary opacity-50"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold mb-2">Landing Page</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif menggunakan HTML & CSS.</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
-                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Kartu 2 -->
-                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
+                <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col w-full">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold mb-2">Mini Game 2D</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Mekanik karakter dan sistem skor game.</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <a href="#
