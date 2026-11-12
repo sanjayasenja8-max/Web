@@ -30,7 +30,6 @@
         }
     </script>
     <style>
-        /* PENGAMAN AGAR TIDAK BISA DI-SCROLL KE SAMPING */
         html, body {
             font-family: 'Poppins', sans-serif;
             background-color: #0b0f19;
@@ -41,7 +40,6 @@
             padding: 0;
         }
         
-        /* BINTANG CSS */
         .stars-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -62,7 +60,6 @@
             100% { background-position: -200px 200px; }
         }
 
-        /* EFEK KETIK CSS */
         .typing-container {
             display: inline-block;
             overflow: hidden;
@@ -88,7 +85,7 @@
         
         section { scroll-margin-top: 80px; }
 
-        /* KUNCI RAHASIA: Mencegah grid meluber keluar layar */
+        /* PENGAMAN GRID AGAR KARTU KE-3 TIDAK HILANG */
         .grid-safe > * {
             min-width: 0; 
             word-wrap: break-word;
@@ -226,7 +223,6 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
             <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
             
-            <!-- GRID SAFE DITAMBAHKAN -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-safe">
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 w-full">
                     <div class="video-container ratio-9-16 mb-4">
@@ -234,8 +230,8 @@
                             <source src="video-proyek-1.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h3 class="text-lg font-bold mb-2">Web Development</h3>
-                    <p class="text-sm text-gray-400">Cuplikan antarmuka website.</p>
+                    <h3 class="text-xl font-bold mb-2">Web Development</h3>
+                    <p class="text-sm text-gray-400">Cuplikan antarmuka dan interaktivitas website responsif.</p>
                 </div>
 
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 w-full">
@@ -244,8 +240,8 @@
                             <source src="video-proyek-2.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h3 class="text-lg font-bold mb-2">Game 2D</h3>
-                    <p class="text-sm text-gray-400">Demonstrasi mekanik game 2D.</p>
+                    <h3 class="text-xl font-bold mb-2">Game 2D Development</h3>
+                    <p class="text-sm text-gray-400">Demonstrasi alur permainan mekanik game 2D.</p>
                 </div>
 
                 <div class="bg-darkBg rounded-xl p-4 border border-gray-800 hover:border-primary transition duration-300 flex flex-col justify-between w-full">
@@ -257,30 +253,29 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold mb-2">Konten Kreatif</h3>
-                        <p class="text-sm text-gray-400">Hasil penyuntingan video.</p>
+                        <h3 class="text-xl font-bold mb-2">Konten Kreatif</h3>
+                        <p class="text-sm text-gray-400">Hasil produksi dan penyuntingan video media visual.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Galeri Proyek (SUDAH DI-FIX ANTI TERPOTONG) -->
+    <!-- Galeri Proyek (KETERANGAN SUDAH LENGKAP) -->
     <section id="projects" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek</span></h2>
-                <p class="text-gray-400">Kumpulan proyek berdasarkan kategori.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri <span class="text-primary">Proyek Tambahan</span></h2>
+                <p class="text-gray-400">Kumpulan proyek lainnya yang dikelompokkan berdasarkan kategori.</p>
                 
                 <div class="flex flex-wrap justify-center gap-3 mt-8">
                     <button onclick="filterProjects('all', this)" class="filter-btn bg-primary text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-md">Semua</button>
                     <button onclick="filterProjects('web', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Web</button>
                     <button onclick="filterProjects('game', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Game</button>
-                    <button onclick="filterProjects('content', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Konten</button>
+                    <button onclick="filterProjects('content', this)" class="filter-btn bg-darkCard text-gray-300 border border-gray-700 hover:bg-gray-800 px-5 py-2 rounded-full text-sm font-medium transition">Desain / Konten</button>
                 </div>
             </div>
 
-            <!-- GRID SAFE DITAMBAHKAN -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-safe" id="project-grid">
                 
                 <!-- Kartu 1 -->
@@ -289,11 +284,12 @@
                         <i class="fas fa-code text-5xl text-primary opacity-50"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Web</span>
                     </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold mb-2">Landing Page</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif menggunakan HTML & CSS.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Landing Page Perusahaan</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Desain web responsif dengan tata letak modern menggunakan HTML, CSS, dan JavaScript.</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
+                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
                         </div>
                     </div>
                 </div>
@@ -304,8 +300,6 @@
                         <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
                         <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
                     </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold mb-2">Mini Game 2D</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Mekanik karakter dan sistem skor game.</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <a href="#
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan me
