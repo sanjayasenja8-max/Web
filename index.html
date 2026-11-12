@@ -28,7 +28,6 @@
                         secondary: '#1d4ed8',
                         darkBg: '#0b0f19',
                         darkCard: '#111827',
-                        darkCardHover: '#1f2937'
                     }
                 }
             }
@@ -42,22 +41,47 @@
             overflow-x: hidden;
         }
         
-        /* Perbaikan Bintang */
-        #particles-js {
+        /* 1. BINTANG PAKAI CSS MURNI (DIJAMIN MUNCUL) */
+        .stars-bg {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 0; 
-            top: 0;
-            left: 0;
-            pointer-events: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #3b82f6, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #3b82f6, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: starsAnim 10s linear infinite;
         }
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s step-end infinite;
+        @keyframes starsAnim {
+            0% { background-position: 0 0; }
+            100% { background-position: -200px 200px; }
         }
-        @keyframes blink { 50% { opacity: 0; } }
-        
+
+        /* 2. EFEK KETIK PAKAI CSS MURNI */
+        .typing-container {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #fff;
+            width: 0;
+            animation: 
+                typing 2.5s steps(30, end) forwards,
+                blink 0.8s step-end infinite;
+            vertical-align: bottom;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
         .fade-in {
             animation: fadeInUp 1s ease-out forwards;
         }
@@ -79,24 +103,25 @@
         .ratio-9-16 { aspect-ratio: 9 / 16; }
         .ratio-16-9 { aspect-ratio: 16 / 9; }
         
-        section { scroll-margin-top: 70px; }
+        /* Jarak aman agar tidak tertutup menu atas */
+        section { scroll-margin-top: 80px; }
     </style>
 </head>
 <body class="antialiased selection:bg-primary selection:text-white">
 
     <!-- Sticky Navbar -->
-    <nav class="fixed w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+    <nav class="fixed w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="#home" class="text-2xl font-bold text-white tracking-wider">DEWA<span class="text-primary">.</span></a>
                 
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="nav-link hover:text-primary transition text-sm font-medium">Beranda</a>
-                    <a href="#about" class="nav-link hover:text-primary transition text-sm font-medium">Tentang</a>
-                    <a href="#skills" class="nav-link hover:text-primary transition text-sm font-medium">Keahlian</a>
-                    <a href="#portfolio" class="nav-link hover:text-primary transition text-sm font-medium">Portofolio Video</a>
-                    <a href="#projects" class="nav-link hover:text-primary transition text-sm font-medium">Proyek Lainnya</a>
-                    <a href="#experience" class="nav-link hover:text-primary transition text-sm font-medium">Pengalaman</a>
+                    <a href="#home" class="hover:text-primary transition text-sm font-medium">Beranda</a>
+                    <a href="#about" class="hover:text-primary transition text-sm font-medium">Tentang</a>
+                    <a href="#skills" class="hover:text-primary transition text-sm font-medium">Keahlian</a>
+                    <a href="#portfolio" class="hover:text-primary transition text-sm font-medium">Portofolio Video</a>
+                    <a href="#projects" class="hover:text-primary transition text-sm font-medium">Proyek Lainnya</a>
+                    <a href="#experience" class="hover:text-primary transition text-sm font-medium">Pengalaman</a>
                 </div>
                 
                 <div class="hidden md:block">
@@ -109,6 +134,7 @@
             </div>
         </div>
 
+        <!-- Menu HP -->
         <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-gray-800 absolute w-full">
             <div class="px-4 pt-2 pb-4 space-y-2">
                 <a href="#home" class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-primary rounded-md">Beranda</a>
@@ -124,7 +150,9 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative flex items-center justify-center overflow-hidden min-h-[85vh] pt-28 pb-16 md:pt-32 md:pb-24">
-        <canvas id="particles-js"></canvas>
+        
+        <!-- Bintang CSS -->
+        <div class="stars-bg"></div>
         
         <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
             <div class="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
@@ -133,15 +161,16 @@
             
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Halo, Saya <br class="sm:hidden"><span class="text-primary">Dewa Sanjaya</span></h1>
             
-            <h2 class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px] flex items-center justify-center">
-                <span class="mr-2">Saya seorang</span> 
-                <span id="typing-text" class="text-white font-semibold typing-cursor">Web Developer</span>
-            </h2>
+            <div class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-8 min-h-[40px] flex items-center justify-center gap-2">
+                <span>Saya seorang</span> 
+                <!-- Teks Ketik CSS -->
+                <span class="typing-container text-white font-semibold">Web Developer</span>
+            </div>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="#portfolio" class="bg-primary hover:bg-secondary w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition shadow-lg shadow-blue-500/30">Lihat Karya</a>
-                <a href="CV-Dewa-Sanjaya.pdf" target="_blank" class="bg-darkCard border border-gray-700 hover:border-primary text-white w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition flex items-center justify-center gap-2">
-                    <i class="fas fa-download"></i> Unduh CV
+                <a href="#contact" class="bg-darkCard border border-gray-700 hover:border-primary text-white w-full sm:w-auto px-8 py-3 rounded-full font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope"></i> Hubungi Saya
                 </a>
             </div>
         </div>
@@ -212,7 +241,7 @@
     <section id="portfolio" class="py-20 bg-darkCard border-t border-gray-800 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Portofolio <span class="text-primary">Video Utama</span></h2>
-            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Dokumentasi langsung dari hasil karya web, game 2D, dan proyek kreatif. Video berputar otomatis (silakan nyalakan suara manual).</p>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Video akan berputar otomatis. Silakan nyalakan suara secara manual lewat tombol di video.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- VIDEO 1: AUTO PLAY, MUTED, LOOP -->
@@ -289,16 +318,4 @@
                 <div class="project-card game bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col">
                     <div class="h-48 bg-gray-800 relative flex items-center justify-center shrink-0">
                         <i class="fas fa-gamepad text-5xl text-primary opacity-50"></i>
-                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">Game</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Mini Game 2D Platformer</h3>
-                        <p class="text-gray-400 text-sm mb-4 flex-grow">Pengembangan mekanik karakter, sistem skor, dan level interaktif berbasis mesin 2D.</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <a href="#" target="_blank" class="text-sm text-primary hover:text-white transition"><i class="fas fa-external-link-alt mr-1"></i> Demo</a>
-                            <a href="#" target="_blank" class="text-sm text-gray-400 hover:text-white transition"><i class="fab fa-github mr-1"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card content bg-darkCard rounded-xl overflow-hidden border border-gray-800 hover:shadow-xl hover:border-primary transition duration-300 flex flex-col
+                        <span class="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-
